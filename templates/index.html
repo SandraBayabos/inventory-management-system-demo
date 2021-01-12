@@ -1,0 +1,9 @@
+{% extends "_layout.html" %}
+{% block content %}
+<h1>Homepage</h1>
+<ul>
+  <li><a href="{{url_for('store')}}">Store</a></li>
+  <li><a href="{{url_for('warehouse')}}">Warehouse</a></li>
+  <li><a href="{{url_for('product')}}">Product</a></li>
+</ul>
+{% endblock %}

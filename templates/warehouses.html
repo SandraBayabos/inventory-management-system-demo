@@ -1,0 +1,22 @@
+{% extends "_layout.html" %}
+{% block content %}
+<h1>Warehouses</h1>
+<table class="table">
+  <tr>
+    <th scope="col">Warehouse Location</th>
+    <th scope="col">Name of Store</th>
+    <th scope="col">Delete?</th>
+  </tr>
+  {% for warehouse in warehouses %}
+  <tr>
+    <td scope="col"><a href="{{ url_for('show_warehouse', id=warehouse.id)}}">{{warehouse.location}}</a></td>
+    <td scope="col"><a href="{{ url_for('show_store', id=warehouse.store.id) }}">{{warehouse.store.name}}</a></td>
+    <td scope="col">
+      <form action="{{ url_for('delete_warehouse', id=warehouse.id)}}" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
