@@ -45,10 +45,8 @@ def show_store(id):
 
 @app.route("/store/<int:id>/update", methods=["POST"])
 def edit_store(id):
-    store = Store(
-        id=id,
-        name=request.form['name']
-    )
+    store = Store.get_or_none(id)
+    store.name = request.form['name']
     if store.save(only=[Store.name]):
         flash("Your store's name has been updated!")
     else:
@@ -99,10 +97,9 @@ def show_warehouse(id):
 
 @app.route("/warehouse/<int:id>/update", methods=["POST"])
 def update_warehouse(id):
-    warehouse = Warehouse(
-        id=id,
-        location=request.form['location']
-    )
+    warehouse = Warehouse.get_or_none(id)
+    warehouse.location = request.form['location']
+  
     if warehouse.save(only=[Warehouse.location]):
         flash("Your warehouse location has been updated!")
     else:
